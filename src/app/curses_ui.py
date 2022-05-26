@@ -28,20 +28,21 @@ def main(stdscr):
         curses.A_BOLD)
     stdscr.refresh()
 
-    scr_size = get_screen_size()
-    scr_size_win = curses.newwin(1, 50, 7, 0)
-    scr_size_win.addstr(f'Current screen size is {scr_size}')
-    scr_size_win.refresh()
+    # scr_size = get_screen_size()
+    # scr_size_win = curses.newwin(1, 50, 7, 0)
+    # scr_size_win.addstr(f'Current screen size is {scr_size}')
+    # scr_size_win.refresh()
 
     datetime_window = curses.newwin(1, 40, 8, 0)
     reminder = Reminder()
     reminders = reminder.determine_time_remaining()
-    number_of_reminders = len(reminders)
+
     windows = {}
     i = 1
-    last_free_row = 8
+    last_free_row = 9
+    first_free_row = 9
     for _reminder in reminders:
-        windows[i] = curses.newwin(1, 100, 8 + i, 0)
+        windows[i] = curses.newwin(1, 100, first_free_row + i, 0)
         windows[i].addstr(f'{_reminder.get("description")} in {_reminder.get("due_in")}')
         windows[i].refresh()
         i += 1
@@ -54,7 +55,7 @@ def main(stdscr):
         if stdscr.getch() == ord('q'):
             break
 
-        if refreshes % 100 == 0:
+        if refreshes % 10 == 0:
             reminders = reminder.determine_time_remaining()
             i = 1
             for _reminder in reminders:
@@ -63,7 +64,7 @@ def main(stdscr):
                     window.clear()
                 else:
                     # make new window
-                    windows[i] = curses.newwin(1, 100, 8 + i, 0)
+                    windows[i] = curses.newwin(1, 100, first_free_row + i, 0)
                     last_free_row += 1
                     window = windows.get(i)
                 window.addstr(f'{_reminder.get("description")} in {_reminder.get("due_in")}')

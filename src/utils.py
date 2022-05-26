@@ -1,6 +1,8 @@
 import json
 import math
 
+from datetime import timedelta
+
 
 def read_config():
     with open('config.json') as f:
@@ -33,7 +35,13 @@ def determine_number_suffix(number):
     'nd' if number ends with 2 --> 2nd, 32nd
     'rd' if number ends with 3 --> 3rd, 43rd
     'th' for all other cases   --> 7th, 19th
+
+    '' if None is passed in
     """
+    if isinstance(number, int) is False:
+        # Short circuit return
+        return ''
+
     last_digit = str(number)[-1]
     if int(last_digit) > 3:
         suffix = 'th'
@@ -44,5 +52,32 @@ def determine_number_suffix(number):
             '3': 'rd'
         }
         suffix = mapping[last_digit]
+
     return suffix
 
+
+def next_day_of_week(desired_day, date):
+    """
+    Returns the next date of a particular day of week (e.g. friday)
+    desired_day should be an integer where 0 is monday and 6 is sunday
+    date is the date that the search will begin
+    """
+    while date.weekday() != desired_day:
+        date += timedelta(1)
+
+    return date
+
+
+def str_fmt_minutes(minutes):
+    """
+    Returns minutes as a string formatted time
+    e.g. 6 hours 34 minutes
+    """
+    hours = int(minutes // 60)
+    # Determine if there should be an 's' after hour
+    hr_plural = 's' if hours != 1 else ''
+
+    minute = ((minutes / 60) - hours) * 60
+    min_plural = 's' if minute != 1 else ''
+
+    return f"{hours} hour{hr_plural} {round(minute)} min{min_plural}"
