@@ -19,7 +19,7 @@ def progress_bar(pre_message, nlines, ncols, begin_y, begin_x):
 
 
 def update_datetime(window):
-    window.clear()
+    window.erase()
     now = datetime.now()
     date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
     window.addstr(f'date and time: {date_time}')
