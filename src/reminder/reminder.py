@@ -80,7 +80,9 @@ class Reminder:
             remind_date = datetime(
                 year=self.now.year,
                 month=self.now.month,
-                day=last_day_of_month)
+                day=last_day_of_month,
+                hour=23,
+                minute=59)
         elif day == 'first':
             remind_date = datetime(
                 year=self.now.year,
@@ -88,7 +90,7 @@ class Reminder:
                 day=1)
 
         days_to_remind = (remind_date - self.now)
-        if 0 < days_to_remind.days < remind_after:
+        if 0 <= days_to_remind.days < remind_after:
             result = {
                 "description": description,
                 "due_in": days_to_remind
