@@ -16,6 +16,10 @@ def main(stdscr):
 
     # curser not visible when set to 0, visible when set to 1
     curses.curs_set(0)
+
+    # Stop curses from using insert and deletion operations for updates
+    stdscr.idcok(False)
+    stdscr.idlok(False)
     
     # start the application off with a blank screen
     stdscr.erase()
