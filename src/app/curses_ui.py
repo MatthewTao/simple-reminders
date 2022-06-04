@@ -18,7 +18,7 @@ def main(stdscr):
     curses.curs_set(0)
     
     # start the application off with a blank screen
-    stdscr.clear()
+    stdscr.erase()
     
     # 0, 0 is the top left corner
     # Coordinates are always passed in the order y, x
@@ -61,7 +61,8 @@ def main(stdscr):
             for _reminder in reminders:
                 window = windows.get(i)
                 if window is not None:
-                    window.clear()
+                    # window.clear()
+                    window.erase()
                 else:
                     # make new window
                     windows[i] = curses.newwin(1, 100, first_free_row + i, 0)
