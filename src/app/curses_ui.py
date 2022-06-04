@@ -72,7 +72,7 @@ def main(stdscr):
                 i += 1
             refreshes = 0
 
-        stdscr.refresh()
+        # stdscr.refresh()
         refreshes += 1
         curses.napms(100)
 
