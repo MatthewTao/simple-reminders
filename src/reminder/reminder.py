@@ -6,7 +6,7 @@ from datetime import datetime
 
 from src.utils import (
     read_config, read_reminder_list, round_up, determine_number_suffix, next_day_of_week,
-    str_fmt_minutes)
+    str_fmt_minutes, str_fmt_days)
 
 
 class Reminder:
@@ -51,14 +51,14 @@ class Reminder:
 
         ann_date = datetime(year=year, month=month, day=day)
         time_to_ann = self.now - ann_date
-        days_to_ann = (datetime(year=self.now.year, month=month, day=day) - self.now)
+        time_to_next_ann = (datetime(year=self.now.year, month=month, day=day) - self.now)
         n_ann = round_up(time_to_ann.days/365) if time_to_ann.days > 365 else ''
 
         description_suffix = f'{n_ann}{determine_number_suffix(n_ann)} ' if n_ann != '' else ''
-        if 0 < days_to_ann.days < remind_after:
+        if 0 < time_to_next_ann.days < remind_after:
             result = {
                 "description": f'{description_suffix}{description}',
-                "due_in": days_to_ann
+                "due_in": str_fmt_days(time_to_next_ann)
             }
         else:
             result = None

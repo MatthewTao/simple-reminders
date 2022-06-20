@@ -81,3 +81,23 @@ def str_fmt_minutes(minutes):
     min_plural = 's' if minute != 1 else ''
 
     return f"{hours} hour{hr_plural} {round(minute)} min{min_plural}"
+
+
+def str_fmt_days(time_delta):
+    """
+    Returns minutes as a string formatted time
+    e.g. 3 days, 6 hours and 34 minutes
+    """
+    days = int(time_delta.days)
+    day_plural = 's' if days != 1 else ''
+
+    remaining_minutes = time_delta.seconds / 60
+    hours = int(remaining_minutes // 60)
+    # Determine if there should be an 's' after hour
+    hr_plural = 's' if hours != 1 else ''
+    remainder = remaining_minutes / 60 - hours
+
+    minute = int(remainder * 60)
+    min_plural = 's' if minute != 1 else ''
+
+    return f"{days} day{day_plural}, {hours} hour{hr_plural} and {round(minute)} min{min_plural}"
