@@ -91,13 +91,17 @@ def str_fmt_days(time_delta):
     days = int(time_delta.days)
     day_plural = 's' if days != 1 else ''
 
-    remaining_minutes = time_delta.seconds / 60
-    hours = int(remaining_minutes // 60)
-    # Determine if there should be an 's' after hour
-    hr_plural = 's' if hours != 1 else ''
-    remainder = remaining_minutes / 60 - hours
+    if days < 10:
+        remaining_minutes = time_delta.seconds / 60
+        hours = int(remaining_minutes // 60)
+        # Determine if there should be an 's' after hour
+        hr_plural = 's' if hours != 1 else ''
+        remainder = remaining_minutes / 60 - hours
 
-    minute = int(remainder * 60)
-    min_plural = 's' if minute != 1 else ''
+        minute = int(remainder * 60)
+        min_plural = 's' if minute != 1 else ''
+        time_remaining = f"{days} day{day_plural}, {hours} hour{hr_plural} and {round(minute)} min{min_plural}"
+    elif days >= 10:
+        time_remaining = f"{days} day{day_plural}"
 
-    return f"{days} day{day_plural}, {hours} hour{hr_plural} and {round(minute)} min{min_plural}"
+    return time_remaining

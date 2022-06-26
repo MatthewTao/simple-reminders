@@ -93,7 +93,7 @@ class Reminder:
         if 0 <= days_to_remind.days < remind_after:
             result = {
                 "description": description,
-                "due_in": days_to_remind
+                "due_in": str_fmt_days(days_to_remind)
             }
         else:
             result = None
@@ -111,7 +111,7 @@ class Reminder:
         if 0 < days_to_remind.days < remind_after:
             result = {
                 "description": description,
-                "due_in": days_to_remind
+                "due_in": str_fmt_days(days_to_remind)
             }
         else:
             result = None
