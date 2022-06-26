@@ -11,4 +11,4 @@ windows-curses is required
 
 Execute the line below to run all the tests and ensure everything is working
 
-> python -m unittest tests
+> python -m unittest discover tests
