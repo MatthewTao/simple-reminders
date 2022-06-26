@@ -6,3 +6,9 @@ anniversaries, tasks, and other things.
 ## Requirements
 
 windows-curses is required
+
+## Tests
+
+Execute the line below to run all the tests and ensure everything is working
+
+> python -m unittest tests
