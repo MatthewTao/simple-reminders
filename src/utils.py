@@ -1,7 +1,8 @@
+import copy
 import json
 import math
 
-from datetime import timedelta
+from datetime import datetime
 
 
 def read_config():
@@ -62,8 +63,12 @@ def next_day_of_week(desired_day, date):
     desired_day should be an integer where 0 is monday and 6 is sunday
     date is the date that the search will begin
     """
+    current_date = copy.copy(date)
     while date.weekday() != desired_day:
-        date += timedelta(1)
+        date = datetime(
+            year=current_date.year,
+            month=current_date.month,
+            day=date.day + 1)
 
     return date
 

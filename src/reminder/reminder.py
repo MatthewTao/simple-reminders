@@ -108,7 +108,7 @@ class Reminder:
         remind_date = next_day_of_week(day, self.now)
         days_to_remind = (remind_date - self.now)
 
-        if 0 < days_to_remind.days < remind_after:
+        if 0 <= days_to_remind.days < remind_after:
             result = {
                 "description": description,
                 "due_in": str_fmt_days(days_to_remind)
