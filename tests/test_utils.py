@@ -12,6 +12,13 @@ class TestUtils(unittest.TestCase):
         print(next_monday)
         self.assertEqual(next_monday.weekday(), 0)
 
+        now = datetime(year=2022, month=6, day=29, hour=13, minute=23)
+        next_monday = next_day_of_week(0, now)
+        print(next_monday)
+        self.assertEqual(next_monday.weekday(), 0)
+        self.assertEqual(next_monday.hour, 13)
+        self.assertEqual(next_monday.minute, 23)
+
     def test_determine_number_suffix(self):
         numbers = [
             {"value": 1, "expected": "st"},
