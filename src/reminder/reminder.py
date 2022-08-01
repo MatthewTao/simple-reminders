@@ -19,6 +19,10 @@ class Reminder:
 
         self.now = datetime.now()
 
+    def refresh_config(self):
+        config = read_config()
+        self.reminder_list = read_reminder_list(config)
+
     def determine_time_remaining(self):
         """
         For each item that is being tracked,

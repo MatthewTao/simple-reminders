@@ -9,7 +9,7 @@ TITLE = """
  \__ | | '  \| '_ | / -_)   | '_/ -_| '  \| | ' \/ _` / -_| '_(_-<
  |___|_|_|_|_| .__|_\___|   |_| \___|_|_|_|_|_||_\__,_\___|_| /__/
              |_|                                                  
-Q to exit"""
+Q to exit | R to reload config"""
 def main(stdscr):
     # Sets that the screen will not wait for key presses
     stdscr.nodelay(1)
@@ -55,9 +55,14 @@ def main(stdscr):
     refreshes = 0
     while True:
         update_datetime(datetime_window)
+
+        char_pressed = stdscr.getch()
         
-        if stdscr.getch() == ord('q'):
+        if char_pressed == ord('q'):
             break
+        elif char_pressed == ord('r'):
+            print('Reload config')
+            reminder = Reminder()
 
         if refreshes % 10 == 0:
             reminders = reminder.determine_time_remaining()
