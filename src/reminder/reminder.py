@@ -59,7 +59,7 @@ class Reminder:
         n_ann = round_up(time_to_ann.days/365) if time_to_ann.days > 365 else ''
 
         description_suffix = f'{n_ann}{determine_number_suffix(n_ann)} ' if n_ann != '' else ''
-        if 0 < time_to_next_ann.days < remind_after:
+        if 0 <= time_to_next_ann.days <= remind_after:
             result = {
                 "description": f'{description_suffix}{description}',
                 "due_in": str_fmt_days(time_to_next_ann)
