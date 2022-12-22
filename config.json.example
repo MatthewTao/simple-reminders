@@ -1,0 +1,4 @@
+{
+    "list_location": "either `local` or `online` but only local is implemented for now",
+    "local_list_loc": "C:\\Users\\PUT_IN_PATH_TO_THE_SIMPLE_REMINDERS_CONFIG_FILE\\configs\\simple-reminders-config.json"
+}

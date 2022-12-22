@@ -1,0 +1,12 @@
+{
+    "reminders": [
+        {
+            "description": "put in description of reminder",
+            "reminder_type": "put in `annual`, `monthly`, `weekly`, `daily`. This example for annual",
+            "year": 2022,
+            "month": 12,
+            "day": 24,
+            "remind_after": 50
+        }
+    ]
+}
